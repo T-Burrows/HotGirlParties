@@ -1,0 +1,21 @@
+
+
+#pink {
+    background-color: hotpink;
+    color: black;
+}
+
+#link {
+    text-decoration: none;
+    color: black;
+}
+
+#actions {
+    text-decoration: none;
+    color: black;
+    margin-right: 10px;
+}
+
+.form-row {
+    display: flex;
+}

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HotGirl Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" 
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" 
+    crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/custom.css')}}">
+</head>
+<body>
+    <div id="pink" class = "p-3 navbar justify-content-between">
+        <h1 class=" navbar-brand">Twisted Fitness</h1>
+        <a id="link" class="btn btn-link" href="/logout">Logout</a>
+    </div>
+    <h1 class="m-4">Hey there, {{user.username}}!</h1>
+    <div class="m-2 d-flex justify-content-around">
+        <h2>My Upcoming</h2>
+        <a href="/needinstructori" id="pink" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true"> Switch to: Available Parties</a>
+    </div>
+    <table class="table table-striped">
+        <tr>
+            <th>Date</th>
+            <th>Start Time</th>
+            <th>End Time</th>
+            <th>Type</th>
+            <th>Instructor</th>
+        </tr>
+        <tbody>
+            {%for party in parties%}
+            {%if party.instructor == user.username%}
+            <tr>
+                <td>{{party.starttime.strftime('%B %d')}}</td>
+                <td>{{party.starttime.strftime('%I:%M')}}</td>
+                <td>{{party.endtime.strftime('%I:%M')}}</td>
+                {% if party.genre == 1 %}
+                    <td>Chair</td>
+                {%else%}
+                    <td>Pole</td>
+                {%endif%}
+                <td>{{party.instructor}}</td>
+            </tr>
+            {%endif%}
+            {%endfor%}
+        </tbody>
+    </table>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" 
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+</body>
+</html>
